@@ -38,7 +38,7 @@ jobs:
         run: bun install
 
       - name: Static HTML Export with Nuxt
-        run: bun run generate
+        run: bun run build
 
       - name: Upload Artifact
         uses: actions/upload-pages-artifact@v3
