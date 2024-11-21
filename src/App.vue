@@ -7,6 +7,7 @@ import DetailIcon from "./components/DetailIcon.vue"
 import LinkIcon from "./components/LinkIcon.vue"
 import Card from "./components/Card.vue"
 import github from "./assets/images/icons/github.webp"
+import logo from "./assets/images/icons/logo.webp"
 import me from "./assets/images/media/me.webp"
 import lycoris from "./assets/images/media/lycoris.webp"
 import makioze from "./assets/images/media/makioze.webp"
@@ -155,17 +156,23 @@ const navBtns = [
 </script>
 
 <template>
-  <div class="mx-auto w-fit lg:w-2/3 py-5">
-      <div class="grid grid-cols-4 lg:grid-cols-5 gap-2 justify-center px-3 mb-5 lg:px-0">
-        <button
-          v-for="btn in navBtns"
-          class="join-item btn lg:btn-md"
-          :class="[btn.style, currentFilter === btn.filterType ? 'btn-active' : 'btn-outline']"
-          @click="() => currentFilter = btn.filterType">
-            {{ btn.filterType }}
-        </button>
+  <div>
+      <div class="flex flex-col lg:relative">
+        <div class="lg:absolute left-10 top-1.5 lg:px-0 mx-auto">
+          <img class="w-20" :src="logo" alt="Roman Paltera Jr">
+        </div>
+        <div class="grid grid-cols-4 lg:grid-cols-5 gap-2 justify-center px-3 pt-0 pb-5 lg:pt-5 lg:px-0 mx-auto w-fit lg:w-2/3 ">
+          <button
+            v-for="btn in navBtns"
+            class="join-item btn lg:btn-md"
+            :class="[btn.style, currentFilter === btn.filterType ? 'btn-active' : 'btn-outline']"
+            @click="() => currentFilter = btn.filterType">
+              {{ btn.filterType }}
+          </button>
+        </div>
       </div>
-      <div class="px-3 lg:px-0 grid grid-cols-2 lg:grid-cols-5 grid-flow-dense gap-2">
+      
+      <div class="px-3 lg:px-0 grid grid-cols-2 lg:grid-cols-5 grid-flow-dense gap-2 mx-auto w-fit lg:w-2/3 pb-5">
 
         <Card span="col-span-2" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.About">
           <div class="card-body">
