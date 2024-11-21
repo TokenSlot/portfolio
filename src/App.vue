@@ -5,6 +5,8 @@ import { onBeforeUpdate, onMounted, ref, watch, type ComponentPublicInstance } f
 import { Filter } from "./types/filter.enum"
 import DetailIcon from "./components/DetailIcon.vue"
 import LinkIcon from "./components/LinkIcon.vue"
+import EmailIcon from "./components/EmailIcon.vue"
+import DocIcon from "./components/DocIcon.vue"
 import Card from "./components/Card.vue"
 import github from "./assets/images/icons/github.webp"
 import logo from "./assets/images/icons/logo.webp"
@@ -21,9 +23,11 @@ gsap.registerPlugin(Flip)
 const currentFilter = ref(Filter.All)
 const cardListRefs = ref<Array<ComponentPublicInstance | null>>([])
 const gitLink = ref<HTMLAnchorElement>()
+const resumeLink = ref<HTMLAnchorElement>()
+const sendEmail = ref<HTMLAnchorElement>()
 
-const triggerGitLink = () => {
-  gitLink.value?.click()
+const triggerLink = (link: HTMLAnchorElement) => {
+  link.click()
 }
 
 onBeforeUpdate(() => {
@@ -176,7 +180,7 @@ const navBtns = [
 
         <Card span="col-span-2" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.About">
           <div class="card-body">
-            <h2 class="card-title text-2xl">Roman Paltera Jr.</h2>
+            <h2 class="card-title text-2xl text-primary">Roman Paltera Jr.</h2>
             <p class="text-base"><span class="font-bold">Web Developer</span> based in the Philippines.</p>
             <p class="text-base">Skilled in <span class="font-bold">Vue/Nuxt</span> and <span class="font-bold">UI/UX Design</span>, with a keen interest in <span class="font-bold">Game Development.</span></p>
             <p class="text-base">Outside of coding, I stay updated on the latest gaming trends and occasionally create Pixel Art as a creative outlet.</p>
@@ -186,8 +190,8 @@ const navBtns = [
         <Card :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Media" data-span="col-span-2">
           <div class="card-body">
             <img class="w-[120px] mx-auto" :src="me" alt="Me">
-            <h2 class="card-title mx-auto">It's Me!</h2>
-            <div class="body hidden text-center">Despite everything it's still me.</div>
+            <h2 class="card-title mx-auto text-secondary">It's Me!</h2>
+            <div class="body hidden mx-auto">Despite everything it's still me.</div>
           </div>
         </Card>
 
@@ -196,7 +200,7 @@ const navBtns = [
             <img :src="quizImg" alt="Quiz Sample">
           </figure>
           <div class="card-body">
-            <h2 class="card-title">Real-Time Quiz Bee Web App</h2>
+            <h2 class="card-title text-accent">Real-Time Quiz Bee Web App</h2>
             <div class="body hidden text-base">
               A web application created for my school to facilitate fun and interactive quiz sessions in real-time. Designed to make learning more engaging, it allows students to compete in a lively and enjoyable environment.
               I was responsible for both designing the app&#39;s user interface and developing the backend, ensuring a seamless experience and efficient functionality for all users.
@@ -222,7 +226,7 @@ const navBtns = [
           <div class="card-body">
             <div class="m-auto">
               <p class="text-center">Current Work</p>
-              <h2 class="card-title mx-auto text-center">Freelance Web Developer</h2>
+              <h2 class="card-title text-warning mx-auto text-center">Freelance Web Developer</h2>
             </div>
           </div>
         </Card>
@@ -232,7 +236,7 @@ const navBtns = [
             <img :src="pumpImg" alt="Pump Sample">
           </figure>
           <div class="card-body">
-            <h2 class="card-title">Lil Pump Mosh Pit Madness</h2>
+            <h2 class="card-title text-accent">Lil Pump Mosh Pit Madness</h2>
             <div class="body hidden text-base">
               <p>This project is a 2D endless runner game built using PixiJS for dynamic gameplay mechanics and Nuxt.js as the web framework. The game challenges players to navigate a three-lane highway, dodge obstacles, and collect money to achieve high scores. Players' performance is showcased on a global leaderboard for competitive engagement.</p>
               <p class="font-bold">Contributions:</p>
@@ -251,17 +255,43 @@ const navBtns = [
           </div>
         </Card>
 
+        <Card class="group" @click="triggerLink(sendEmail!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Contacts" data-span="col-span-1">
+          <a href="mailto:palteraromanjr@gmail.com" ref="sendEmail"></a>
+          <div class="card-body">
+            <div class="m-auto">
+              <EmailIcon class="mx-auto"></EmailIcon>
+              <h2 class="card-title flex flex-wrap justify-center gap-0"><span class="text-warning">palteraromanjr</span><span class="text-base">@gmail.com</span></h2>
+            </div>
+          </div>
+          <div class="cards-action flex flex-col justify-end p-2">
+            <div class="close badge badge-warning flex gap-1 items-center group-hover:ring-4 ring-yellow-500"><span>Send Email</span> <LinkIcon></LinkIcon></div>
+          </div>
+        </Card>
+
+        <Card class="group" @click="triggerLink(resumeLink!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Contacts" data-span="col-span-1">
+          <a href="https://drive.google.com/file/d/1vB2mE8WkIPA7be9CENMVN-Gi7n0cCZz0/view?usp=drive_link" ref="resumeLink" target="_blank"></a>
+          <div class="card-body">
+            <div class="m-auto">
+              <DocIcon class="mx-auto mb-2"></DocIcon>
+              <h2 class="card-title flex flex-wrap justify-center gap-0 text-warning">View My Resume</h2>
+            </div>
+          </div>
+          <div class="cards-action flex flex-col justify-end p-2">
+            <div class="close badge badge-warning flex gap-1 items-center group-hover:ring-4 ring-yellow-500"><span>Link</span> <LinkIcon></LinkIcon></div>
+          </div>
+        </Card>
+
         <Card class="image-full"  :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Media">
           <figure>
             <img :src="lycoris" alt="Lycoris">
           </figure>
         </Card>
 
-        <Card class="image-full group bg-white" @click="triggerGitLink" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Projects" data-span="col-span-1">
+        <Card class="group bg-white" @click="triggerLink(gitLink!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Projects" data-span="col-span-1">
           <a href="https://github.com/TokenSlot" ref="gitLink" target="_blank"></a>
-          <figure>
-            <img class="p-8" :src="github" alt="Github">
-          </figure>
+          <div class="card-body">
+            <img :src="github" alt="Github">
+          </div>
           <div class="cards-action h-full flex flex-col justify-end p-2">
             <div class="close badge badge-outline badge-neutral flex gap-1 items-center group-hover:ring-4 ring-purple-500"><span>Link</span> <LinkIcon></LinkIcon></div>
           </div>
@@ -272,7 +302,7 @@ const navBtns = [
             <img :src="saeedImg" alt="Saeed">
           </figure>
           <div class="card-body">
-            <h2 class="card-title">Saeed Digital Advertising</h2>
+            <h2 class="card-title text-accent">Saeed Digital Advertising</h2>
             <div class="body hidden text-base">
               <p class="p-0">Developed a modern and responsive website for Saeed Digital Advertising using Nuxt.js. The site highlights the company's services and portfolio with a user-friendly interface.</p>
               <p class="font-bold">Contributions:</p>
@@ -287,7 +317,6 @@ const navBtns = [
             <div class="flex-1">
               <div class="close badge badge-accent flex justify-center items-center group-hover:ring-4 ring-purple-500"><span class="closeTxt">Details</span> <DetailIcon class="icon transition-transform duration-300 ease-out"></DetailIcon></div>
             </div>
-            
             <div class="badge badge-outline">Nuxt 3</div>
           </div>
         </Card>
@@ -316,11 +345,6 @@ body, html {
 .image-full::before {
   background-color: transparent !important;
 }
-
-.body {
-  @apply lg:pl-1 lg:pr-20 lg:text-justify;
-}
-
 .body p {
   @apply mt-3 text-base;
 }
