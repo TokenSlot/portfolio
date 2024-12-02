@@ -269,7 +269,7 @@ const navBtns = [
         </Card>
 
         <Card class="group" @click="triggerLink(resumeLink!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Contacts" data-span="col-span-1">
-          <a href="https://drive.google.com/file/d/1vB2mE8WkIPA7be9CENMVN-Gi7n0cCZz0/view?usp=drive_link" ref="resumeLink" target="_blank"></a>
+          <a href="https://drive.google.com/file/d/1Vi6el6y3HfY1boZLPK9o7i6d09Ay1wAw/view?usp=sharing" ref="resumeLink" target="_blank"></a>
           <div class="card-body">
             <div class="m-auto">
               <DocIcon class="mx-auto mb-2"></DocIcon>
