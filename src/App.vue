@@ -269,7 +269,7 @@ const navBtns = [
         </Card>
 
         <Card class="group" @click="triggerLink(resumeLink!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Contacts" data-span="col-span-1">
-          <a href="/portfolio/resume.pdf" ref="resumeLink" target="_blank"></a>
+          <a href="/portfolio/RomanPalteraJr-RESUME.pdf" ref="resumeLink" target="_blank"></a>
           <div class="card-body">
             <div class="m-auto">
               <DocIcon class="mx-auto mb-2"></DocIcon>
