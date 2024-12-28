@@ -3,7 +3,17 @@ export default {
   content: ['./src/**/*.{vue,js,ts}'],
   plugins: [require('daisyui')],
   daisyui: {
-    themes: ['dim']
+    themes: [
+      {
+        dark: {
+          ...require("daisyui/src/theming/themes")["dim"],
+          "base-100": "#111827",
+          ".bg-card": {
+            "background-color": "#1f2937"
+          }
+        }
+      }
+    ]
   }
 }
 

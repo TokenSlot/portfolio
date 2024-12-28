@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, useAttrs, watch } from 'vue'
+import { computed, onMounted, ref, useAttrs, watch } from 'vue'
 import { gsap } from "gsap"
 import { Flip } from "gsap/Flip"
 
@@ -9,32 +9,32 @@ const props = defineProps({
     span: {
         type: String,
         default: ''
-    }
+    },
+    background: {
+      type: String,
+      default: 'bg-card'  
+    },
 })
 
 const attrs = useAttrs()
 
 const filter = ref(attrs['data-filter'])
+const colorTheme = computed(() => {
+    if (filter.value == "About") {
+        return "border-primary"
+    } else if (filter.value == "Projects") {
+        return "border-accent"
+    } else if (filter.value == "Media") {
+        return "border-secondary"
+    } else if (filter.value == "Contacts") {
+        return "border-warning"
+    }
+})
 
 </script>
 
 <template>
-    <div :class="[span, filter]" ref="card" class="card card-compact shadow-lg bg-base-100">
+    <div :class="[span, colorTheme, background]" ref="card" class="border card card-compact shadow-lg">
         <slot></slot>
     </div>  
 </template>
-
-<style>
-.About {
-    @apply border border-primary
-}
-.Projects {
-    @apply border border-accent
-}
-.Media {
-    @apply border border-secondary
-}
-.Contacts {
-    @apply border border-warning
-}
-</style>

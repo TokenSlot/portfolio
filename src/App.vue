@@ -160,7 +160,7 @@ const navBtns = [
 </script>
 
 <template>
-  <div>
+  <div class="w-screen min-h-screen">
       <div class="flex flex-col lg:relative">
         <div class="lg:absolute left-10 top-1.5 lg:px-0 mx-auto">
           <img class="w-20" :src="logo" alt="Roman Paltera Jr">
@@ -260,7 +260,7 @@ const navBtns = [
           <div class="card-body">
             <div class="m-auto">
               <EmailIcon class="mx-auto"></EmailIcon>
-              <h2 class="card-title flex flex-wrap justify-center gap-0"><span class="text-warning">palteraromanjr</span><span class="text-base">@gmail.com</span></h2>
+              <h2 class="card-title flex flex-col justify-center gap-0"><span class="text-warning">palteraromanjr</span><span class="text-base">@gmail.com</span></h2>
             </div>
           </div>
           <div class="cards-action flex flex-col justify-end p-2">
@@ -269,11 +269,11 @@ const navBtns = [
         </Card>
 
         <Card class="group" @click="triggerLink(resumeLink!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Contacts" data-span="col-span-1">
-          <a href="https://drive.google.com/file/d/1Vi6el6y3HfY1boZLPK9o7i6d09Ay1wAw/view?usp=sharing" ref="resumeLink" target="_blank"></a>
+          <a href="/portfolio/resume.pdf" ref="resumeLink" target="_blank"></a>
           <div class="card-body">
             <div class="m-auto">
               <DocIcon class="mx-auto mb-2"></DocIcon>
-              <h2 class="card-title flex flex-wrap justify-center gap-0 text-warning">View My Resume</h2>
+              <h2 class="card-title text-center text-warning">View My Resume</h2>
             </div>
           </div>
           <div class="cards-action flex flex-col justify-end p-2">
@@ -287,7 +287,7 @@ const navBtns = [
           </figure>
         </Card>
 
-        <Card class="group bg-white" @click="triggerLink(gitLink!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Projects" data-span="col-span-1">
+        <Card class="group" background="bg-white" @click="triggerLink(gitLink!)" :ref="(el: any) => setCardRef(el)" :data-filter="Filter.Projects" data-span="col-span-1">
           <a href="https://github.com/TokenSlot" ref="gitLink" target="_blank"></a>
           <div class="card-body">
             <img :src="github" alt="Github">
@@ -337,15 +337,7 @@ const navBtns = [
 </template>
 
 <style>
-body, html {
-  @apply bg-base-300 w-screen;
-  min-height: 100vh;
-}
-
 .image-full::before {
   background-color: transparent !important;
-}
-.body p {
-  @apply mt-3 text-base;
 }
 </style>
