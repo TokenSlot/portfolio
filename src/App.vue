@@ -293,7 +293,7 @@ const navBtns = [
             <img :src="github" alt="Github">
           </div>
           <div class="cards-action h-full flex flex-col justify-end p-2">
-            <div class="close badge badge-outline badge-neutral flex gap-1 items-center group-hover:ring-4 ring-purple-500"><span>Link</span> <LinkIcon></LinkIcon></div>
+            <div class="close badge badge-outline badge-neutral flex gap-1 items-center group-hover:ring-4 ring-purple-500"><span>Github</span> <LinkIcon></LinkIcon></div>
           </div>
         </Card>
 
